@@ -14,7 +14,7 @@ ssh-add-keys() {
 }
 
 if [ -z "$SSH_AGENT_PID" ]; then
-    echo 'eval "$(ssh-agent -s)" でagentを起動してください。'; exit 0
+    echo 'eval `ssh-agent` でagentを起動してください。'; exit 0
 fi
 
 if [ -f "$CONFIG_FILE" ]; then
