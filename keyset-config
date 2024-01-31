@@ -1,0 +1,2 @@
+work_keys=(~/.ssh/work_key_name1 ~/.ssh/work_key_name2)
+pvt_keys=(~/.ssh/pvt_key_name1 ~/.ssh/pvt_key_name2)
