@@ -1,0 +1,36 @@
+#!/bin/bash
+
+CONFIG_FILE=~/.ssh/keyset-config
+
+ssh-add-keys() {
+    local key_type=$1
+    shift
+
+    ssh-add -D
+    for key in "$@"; do
+        ssh-add "$key"
+    done
+    echo "$key_type のキーが登録されました。"
+}
+
+if [ -z "$SSH_AGENT_PID" ]; then
+    (eval `ssh-agent`) &
+fi
+
+if [ -f "$CONFIG_FILE" ]; then
+    source "$CONFIG_FILE"
+else
+    echo "agent_setファイルを作成してください。"; exit 0
+fi
+
+case "$1" in
+    work)
+        ssh-add-keys "$1" "${work_keys[@]}"
+        ;;
+    pvt)
+        ssh-add-keys "$1" "${pvt_keys[@]}"
+        ;;
+    *)
+        echo "引数に work または pvt を指定してください。"
+        ;;
+esac
