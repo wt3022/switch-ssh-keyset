@@ -20,7 +20,7 @@ fi
 if [ -f "$CONFIG_FILE" ]; then
     source "$CONFIG_FILE"
 else
-    echo "agent_setファイルを作成してください。"; exit 0
+    echo "keyset-configファイルを ~/.ssh/keyset-config に作成してください。"; exit 0
 fi
 
 case "$1" in
